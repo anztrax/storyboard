@@ -42,18 +42,21 @@ class StoryboardApp extends MaterialApp {
 ///         ])));
 /// ```
 class Storyboard extends StatelessWidget {
-  final _kStoryBoardTitle = "Storyboard";
+  static const String _kStoryBoardDefaultTitle = "Storyboard";
+  final String title;
 
-  Storyboard(this.stories)
-      : assert(stories != null),
-        super();
+  Storyboard(this.stories,{
+    this.title = _kStoryBoardDefaultTitle
+  }) : assert(stories != null),
+      assert(title != null),
+      super();
 
   final List<Story> stories;
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(title: new Text(_kStoryBoardTitle)),
+        appBar: new AppBar(title: new Text(this.title)),
         body: new ListView.builder(
           itemBuilder: (BuildContext context, int index) => stories[index],
           itemCount: stories.length,
