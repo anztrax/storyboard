@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:storyboard/storyboard.dart';
+import 'package:simple_storyboard/simple_storyboard.dart';
 
-class IconFaceNatureStory extends Story {
+class IconFaceNatureStory extends SimpleStory {
   @override
   List<Widget> get storyContent =>
       [const Icon(Icons.face), const Icon(Icons.nature)];
 }
 
-class IconHomePhotostory extends Story {
+class IconHomePhotostory extends SimpleStory {
   @override
   List<Widget> get storyContent =>
       [const Icon(Icons.home), const Icon(Icons.photo)];
 }
 
-class IconFullscreenStory extends FullScreenStory {
+class IconFullscreenStory extends SimpleFullScreenStory {
   @override
   List<Widget> get storyContent => [
         new SimpleDialog(
@@ -22,7 +22,7 @@ class IconFullscreenStory extends FullScreenStory {
       ];
 }
 
-class IconFullscreenMultiStory extends FullScreenStory {
+class IconFullscreenMultiStory extends SimpleFullScreenStory {
   @override
   List<Widget> get storyContent => [
         new SimpleDialog(
@@ -34,14 +34,14 @@ class IconFullscreenMultiStory extends FullScreenStory {
 
 void main() {
   testWidgets('Storybook scaffold test', (WidgetTester tester) async {
-    await tester.pumpWidget(new StoryboardApp([new IconFaceNatureStory()]));
+    await tester.pumpWidget(new SimpleStoryboardApp([new IconFaceNatureStory()]));
     await tester.pump(); // triggers a frame
     expect(find.byType(Scaffold), findsOneWidget);
     expect(find.byType(AppBar), findsOneWidget);
   });
 
   testWidgets('Single story test', (WidgetTester tester) async {
-    await tester.pumpWidget(new StoryboardApp([new IconFaceNatureStory()]));
+    await tester.pumpWidget(new SimpleStoryboardApp([new IconFaceNatureStory()]));
     await tester.pump(); // triggers a frame
 
     Finder expTileFinder = find.byType(ExpansionTile);
@@ -54,7 +54,7 @@ void main() {
   });
 
   testWidgets('Two story test', (WidgetTester tester) async {
-    await tester.pumpWidget(new StoryboardApp(
+    await tester.pumpWidget(new SimpleStoryboardApp(
         [new IconFaceNatureStory(), new IconHomePhotostory()]));
     await tester.pump(); // triggers a frame
 
@@ -72,7 +72,7 @@ void main() {
   });
 
   testWidgets('Fullscreen single widget story ', (WidgetTester tester) async {
-    await tester.pumpWidget(new StoryboardApp([new IconFullscreenStory()]));
+    await tester.pumpWidget(new SimpleStoryboardApp([new IconFullscreenStory()]));
     await tester.pump(); // triggers a frame
 
     Finder expTileFinder = find.byType(ExpansionTile);
@@ -87,7 +87,7 @@ void main() {
   });
 
   testWidgets('Fullscreen multi widget story ', (WidgetTester tester) async {
-    await tester.pumpWidget(new StoryboardApp(
+    await tester.pumpWidget(new SimpleStoryboardApp(
         [new IconFullscreenStory(), new IconFullscreenMultiStory()]));
     await tester.pump(); // triggers a frame
 

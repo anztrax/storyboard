@@ -1,4 +1,4 @@
-library storyboard;
+library simple_storyboard;
 
 import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
@@ -13,14 +13,14 @@ import 'package:recase/recase.dart';
 ///     new MyBasicWidgetStory(),
 /// ]));
 /// ```
-class StoryboardApp extends MaterialApp {
+class SimpleStoryboardApp extends MaterialApp {
   /// Creates a new Storyboard App.
   ///
   ///  * [stories] defines the list of stories that will be combined into
   ///  a storyboard.
-  StoryboardApp(List<Story> stories)
+  SimpleStoryboardApp(List<SimpleStory> stories)
       : assert(stories != null),
-        super(home: new Storyboard(stories));
+        super(home: new SimpleStoryboard(stories));
 }
 
 /// A Storyboard is a widget displaying a collection of [Story] widgets.
@@ -41,17 +41,17 @@ class StoryboardApp extends MaterialApp {
 ///             new MyBasicWidgetStory(),
 ///         ])));
 /// ```
-class Storyboard extends StatelessWidget {
+class SimpleStoryboard extends StatelessWidget {
   static const String _kStoryBoardDefaultTitle = "Storyboard";
   final String title;
 
-  Storyboard(this.stories,{
+  SimpleStoryboard(this.stories,{
     this.title = _kStoryBoardDefaultTitle
   }) : assert(stories != null),
       assert(title != null),
       super();
 
-  final List<Story> stories;
+  final List<SimpleStory> stories;
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +75,8 @@ class Storyboard extends StatelessWidget {
 /// The story's Widget children are arranged as a series of [Row]s within an
 /// ExpansionTile, or if the widget is full screen, is displayed by navigating
 /// to a new route.
-abstract class Story extends StatelessWidget {
-  const Story({Key key}) : super(key: key);
+abstract class SimpleStory extends StatelessWidget {
+  const SimpleStory({Key key}) : super(key: key);
 
   List<Widget> get storyContent;
 
@@ -106,7 +106,7 @@ abstract class Story extends StatelessWidget {
     if (!isFullScreen) {
       return new ExpansionTile(
         leading: const Icon(Icons.list),
-        key: new PageStorageKey<Story>(this),
+        key: new PageStorageKey<SimpleStory>(this),
         title: new Text(title),
         children: storyContent.map(_widgetListItem).toList(),
       );
@@ -116,7 +116,7 @@ abstract class Story extends StatelessWidget {
       } else {
         return new ExpansionTile(
           leading: const Icon(Icons.fullscreen),
-          key: new PageStorageKey<Story>(this),
+          key: new PageStorageKey<SimpleStory>(this),
           title: new Text(title),
           children: storyContent
               .map((Widget w) => _widgetTileLauncher(w, title, context))
@@ -128,6 +128,6 @@ abstract class Story extends StatelessWidget {
 }
 
 /// A convenience abstract class for implementing a full screen [Story].
-abstract class FullScreenStory extends Story {
+abstract class SimpleFullScreenStory extends SimpleStory {
   bool get isFullScreen => true;
 }
