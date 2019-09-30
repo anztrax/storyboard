@@ -1,8 +1,8 @@
-name: storyboard
-description: Faster iterative development of Flutter user interfaces by isolating widgets from your app.
+name: simple_storyboard
+description: Faster iterative development of Flutter user interfaces by isolating widgets from your app. (Original Author is Mike Hoolehan <mike@hoolehan.com>, i just fork it and changes some things)
 version: 0.0.4+1
-author: Mike Hoolehan <mike@hoolehan.com>
-homepage: https://github.com/ilikerobots/storyboard
+author: Andrew Ananta <kuro.ketanitem@gmail.com>
+homepage: https://github.com/anztrax/storyboard
 
 dependencies:
   flutter:
